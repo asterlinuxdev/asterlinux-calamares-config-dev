@@ -26,7 +26,7 @@ The examples are not exhaustive.
 
 /* 
 
-EndeavourOS Calamares Theme
+AsterLinux Calamares Theme
 
 */
 
@@ -37,7 +37,6 @@ EndeavourOS Calamares Theme
 }
 
 #sidebarMenuApp {
-	#background-image: url(/etc/calamares/branding/endeavouros/side-bar.png);
 	background-color: #31363b;
 	padding-top: 0px;
 	background-position: center;

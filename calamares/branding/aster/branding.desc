@@ -34,10 +34,10 @@ images:
 slideshowAPI: 2
 
 style:
-   sidebarBackground:    "#6932d9"
+   sidebarBackground:    "#b89eed"
    sidebarText:          "#FFFFFF"
    sidebarTextCurrent:   "#17A879"
-   SidebarBackgroundCurrent: "#6932d9"
+   SidebarBackgroundCurrent: "#b89eed"
 
 slideshow:               "show.qml"
 
