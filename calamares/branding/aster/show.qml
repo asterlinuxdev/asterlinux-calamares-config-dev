@@ -16,125 +16,153 @@ Presentation
     id: presentation
 
     function nextSlide() {
-        console.log("QML Component (default slideshow) Next slide");
+        console.log("Process is running in the background...");
         presentation.goToNextSlide();
     }
 
     Timer {
         id: advanceTimer
-        interval: 15000
-        running: presentation.activatedInCalamares
+        interval: 20000
+        running: true
         repeat: true
         onTriggered: nextSlide()
     }
 
     Slide {
-
-        Image {
-            id: background_1
-            source: "aster1.png"
-            width: 1002; height: 651
-            fillMode: Image.PreserveAspectFit
-            anchors.centerIn: parent
+           anchors.fill: parent
+        Rectangle {
+            anchors.fill: parent
+            border.width: 1
+            color: "#646497"
+            Image {
+                id: slide_trust
+                source: "aster1.png"
+                fillMode: Image.PreserveAspectFit
+                anchors.fill: parent
+            }
         }
     }
 
     Slide {
-
-        Image {
-            id: background_2
-            source: "aster2.png"
-            width: 1002; height: 651
-            fillMode: Image.PreserveAspectFit
-            anchors.centerIn: parent
-        }
-    }
-
-
-        Slide {
-
-        Image {
-            id: background_3
-            source: "aster3.png"
-            width: 1002; height: 651
-            fillMode: Image.PreserveAspectFit
-            anchors.centerIn: parent
+           anchors.fill: parent
+        Rectangle {
+            anchors.fill: parent
+            border.width: 1
+            color: "#646497"
+            Image {
+                id: slide_welcome_app
+                source: "aster2.png"
+                fillMode: Image.PreserveAspectFit
+                anchors.fill: parent
+            }
         }
     }
 
     Slide {
+            anchors.fill: parent
+        Rectangle {
+            anchors.fill: parent
+            border.width: 1
+            color: "#646497"
+            Image {
+                id: slide_discover
+                source: "aster3.png"
+                fillMode: Image.PreserveAspectFit
+                anchors.fill: parent
+            }
+        }
+    }
 
-        Image {
-            id: background_4
-            source: "aster4.png"
-            width: 1002; height: 651
-            fillMode: Image.PreserveAspectFit
-            anchors.centerIn: parent
+    Slide {
+           anchors.fill: parent
+        Rectangle {
+            anchors.fill: parent
+            border.width: 1
+            color: "#646497"
+            Image {
+                id: slide_forum
+                source: "aster4.png"
+                fillMode: Image.PreserveAspectFit
+                anchors.fill: parent
+            }
         }
     }
     
+    Slide {
+           anchors.fill: parent
+        Rectangle {
+            anchors.fill: parent
+            border.width: 1
+            color: "#646497"
+            Image {
+                id: slide_welcome_app
+                source: "aster5.png"
+                fillMode: Image.PreserveAspectFit
+                anchors.fill: parent
+            }
+        }
+    }
+
         Slide {
-
-        Image {
-            id: background_5
-            source: "aster5.png"
-            width: 1002; height: 651
-            fillMode: Image.PreserveAspectFit
-            anchors.centerIn: parent
+           anchors.fill: parent
+        Rectangle {
+            anchors.fill: parent
+            border.width: 1
+            color: "#646497"
+            Image {
+                id: slide_welcome_app
+                source: "aster6.png"
+                fillMode: Image.PreserveAspectFit
+                anchors.fill: parent
+            }
         }
     }
 
-            Slide {
-
-        Image {
-            id: background_6
-            source: "aster6.png"
-            width: 1002; height: 651
-            fillMode: Image.PreserveAspectFit
-            anchors.centerIn: parent
+        Slide {
+           anchors.fill: parent
+        Rectangle {
+            anchors.fill: parent
+            border.width: 1
+            color: "#646497"
+            Image {
+                id: slide_welcome_app
+                source: "aster7.png"
+                fillMode: Image.PreserveAspectFit
+                anchors.fill: parent
+            }
         }
     }
 
-                Slide {
-
-        Image {
-            id: background_7
-            source: "aster7.png"
-            width: 1002; height: 651
-            fillMode: Image.PreserveAspectFit
-            anchors.centerIn: parent
+        Slide {
+           anchors.fill: parent
+        Rectangle {
+            anchors.fill: parent
+            border.width: 1
+            color: "#646497"
+            Image {
+                id: slide_welcome_app
+                source: "aster8.png"
+                fillMode: Image.PreserveAspectFit
+                anchors.fill: parent
+            }
         }
     }
 
-                    Slide {
-
-        Image {
-            id: background_8
-            source: "aster8.png"
-            width: 1002; height: 651
-            fillMode: Image.PreserveAspectFit
-            anchors.centerIn: parent
+        Slide {
+           anchors.fill: parent
+        Rectangle {
+            anchors.fill: parent
+            border.width: 1
+            color: "#646497"
+            Image {
+                id: slide_welcome_app
+                source: "aster9.png"
+                fillMode: Image.PreserveAspectFit
+                anchors.fill: parent
+            }
         }
     }
 
-                    Slide {
-
-        Image {
-            id: background_9
-            source: "aster9.png"
-            width: 1002; height: 651
-            fillMode: Image.PreserveAspectFit
-            anchors.centerIn: parent
-        }
-    }
-
-
-    // When this slideshow is loaded as a V1 slideshow, only
-    // activatedInCalamares is set, which starts the timer (see above).
-    //
-    // In V2, also the onActivate() and onLeave() methods are called.
-    // These example functions log a message (and re-start the slides
-    // from the first).
     function onActivate() {
         console.log("QML Component (default slideshow) activated");
         presentation.currentSlide = 0;
@@ -143,5 +171,4 @@ Presentation
     function onLeave() {
         console.log("QML Component (default slideshow) deactivated");
     }
-
 }

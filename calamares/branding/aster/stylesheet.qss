@@ -1,9 +1,5 @@
 /*
- * SPDX-FileCopyrightText: no
- * SPDX-License-Identifier: CC0-1.0
- */
 
-/*
 A branding component can ship a stylesheet (like this one)
 which is applied to parts of the Calamares user-interface.
 In principle, all parts can be styled through CSS.
@@ -26,107 +22,131 @@ using `QComboBox` as a selector).
 This example stylesheet has all the actual styling commented out.
 The examples are not exhaustive.
 
-Use gammaray
+*/
+
+/* 
+
+EndeavourOS Calamares Theme
 
 */
 
-/*** Generic Widgets.
- *
- * You can style **all** widgets of a given class by selecting
- * the class name. Some widgets have specialized sub-selectors.
- */
+/* # MAIN APPLICATION WINDOW # */
+
+#mainApp {
+	background-color:#646497;
+}
+
+#sidebarMenuApp {
+	#background-image: url(/etc/calamares/branding/endeavouros/side-bar.png);
+	background-color: #31363b;
+	padding-top: 0px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+QWidget {
+	font: 12px;
+	color: #ffffff;
+}
+
+QDialogButtonBox { 
+	dialogbuttonbox-buttons-have-icons: 0;
+}
+
+/* # BUTTONS GENERAL A/GENERAL B/SUBCATEGORY # */
+
+QPushButton {
+}
+
+QPushButton:pressed {
+}
+
+QPushButton:hover {
+}
+
+#debugButton {
+	background-color: #31363b;
+	font: 10px;
+	color: #ffffff;
+	height: 32px;
+    	padding: 5px;
+	border: none;
+}
+
+#debugButton:pressed {
+	color: #7f3fbf;
+}
+
+#debugButton:hover {
+	color: #7f3fbf;
+}
+
+#aboutButton {
+	background-color: #31363b;
+	font: 10px;
+	color: #ffffff;
+	height: 32px;
+    	padding: 0px;
+	border: none;
+}
+
+#aboutButton:pressed {
+	color: #7f3fbf;
+}
+
+#aboutButton:hover {
+	color: #7f3fbf;
+}
 
 /*
-QPushButton { background-color: green; }
+# VALUES FOR PACKAGECHOOSER MODULE UI (packagechooser.conf) #
+products = left side values for the Desktops (id:)
+productScreenshot = the Desktop screenschot (screenshot:)
+productName = title of the right part over the screenschot (name:)
+productDescription  = description text (description:)
 */
 
-/*** Main application window.
- *
- * The main application window has the sidebar, which in turn
- * contains a logo and a list of items -- note that the list
- * can **not** be styled, since it has its own custom C++
- * delegate code.
- */
+#products {
+	color: #ffffff;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 5px;
+	font: 15px;
+}
 
-/*
-#mainApp { }
-#sidebarApp { }
-#logoApp { }
-*/
+#productScreenshot {
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
 
-/*** Welcome module.
- *
- * There are plenty of parts, but the buttons are the most interesting
- * ones (donate, release notes, ...). The little icon image can be
- * styled through *qproperty-icon*, which is a little obscure.
- * URLs can reference the QRC paths of the Calamares application
- * or loaded via plugins or within the filesystem. There is no
- * comprehensive list of available icons, though.
- */
+/*set to same as main app background-color and 1px to hide it*/
+#productName {
+	padding-left: 40px;
+	font: 1px;
+	color: #646497;
+}
 
-/*
-QPushButton#aboutButton { qproperty-icon: url(:/data/images/release.svg); }
-#donateButton,
-#supportButton,
-#releaseNotesButton,
-#knownIssuesButton { qproperty-icon: url(:/data/images/help.svg); }
-*/
+#productDescription {
+	padding-left: 40px;
+        padding-right: 40px;
+	font: 14px;
+	color: #ffffff;
+}
 
-/*** Partitioning module.
- *
- * Many moving parts, which you will need to experiment with.
- */
+/* Partitioning module.
 
-/*
 #bootInfoIcon { }
-#bootInfoLable { }
+#bootInfoLabel { }
 #deviceInfoIcon { }
 #defineInfoLabel { }
 #scrollAreaWidgetContents { }
 #partitionBarView { }
+
 */
 
-/*** Licensing module.
- *
- * The licensing module paints individual widgets for each of
- * the licenses. The item can be collapsed or expanded.
- */
+/* Licensing module.
 
-/*
 #licenseItem {  }
 #licenseItemFullText {  }
+
 */
-
-/* START OF QSS */
-
-#mainApp { }
-
-#sidebarApp {
-  background-color: #6932d9;
-}
-
-#logoApp {
-  background-color: #6932d9;
-}
-
-#sidebarMenuApp{
-  background-color: #6932d9;
-  font: 20px;
-}
-
-QWidget {
-  font: 16px;
-}
-
-QDialogButtonBox{
-  dialogbuttonbox-buttons-have-icons: 0;
-}
-
-#debugButton {
-	font: bold 10px;
-	color: #6932d9;
-}
-
-#debugButton:hover {
-  color: #d6c7f5;
-}
