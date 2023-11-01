@@ -32,8 +32,8 @@ Presentation
            anchors.fill: parent
         Rectangle {
             anchors.fill: parent
-            border.width: 1
-            color: "#b89eed"
+            border.width: 0
+            color: "#3f4246"
             Image {
                 id: aster1
                 source: "aster1.png"
@@ -47,8 +47,8 @@ Presentation
            anchors.fill: parent
         Rectangle {
             anchors.fill: parent
-            border.width: 1
-            color: "#b89eed"
+            border.width: 0
+            color: "#3f4246"
             Image {
                 id: aster2
                 source: "aster2.png"
@@ -62,8 +62,8 @@ Presentation
             anchors.fill: parent
         Rectangle {
             anchors.fill: parent
-            border.width: 1
-            color: "#b89eed"
+            border.width: 0
+            color: "#3f4246"
             Image {
                 id: aster3
                 source: "aster3.png"
@@ -77,8 +77,8 @@ Presentation
            anchors.fill: parent
         Rectangle {
             anchors.fill: parent
-            border.width: 1
-            color: "#b89eed"
+            border.width: 0
+            color: "#3f4246"
             Image {
                 id: aster4
                 source: "aster4.png"
@@ -92,8 +92,8 @@ Presentation
            anchors.fill: parent
         Rectangle {
             anchors.fill: parent
-            border.width: 1
-            color: "#b89eed"
+            border.width: 0
+            color: "#3f4246"
             Image {
                 id: aster5
                 source: "aster5.png"
@@ -107,8 +107,8 @@ Presentation
            anchors.fill: parent
         Rectangle {
             anchors.fill: parent
-            border.width: 1
-            color: "#b89eed"
+            border.width: 0
+            color: "#3f4246"
             Image {
                 id: aster6
                 source: "aster6.png"
@@ -122,8 +122,8 @@ Presentation
            anchors.fill: parent
         Rectangle {
             anchors.fill: parent
-            border.width: 1
-            color: "#b89eed"
+            border.width: 0
+            color: "#3f4246"
             Image {
                 id: aster7
                 source: "aster7.png"
@@ -137,8 +137,8 @@ Presentation
            anchors.fill: parent
         Rectangle {
             anchors.fill: parent
-            border.width: 1
-            color: "#b89eed"
+            border.width: 0
+            color: "#3f4246"
             Image {
                 id: aster8
                 source: "aster8.png"
@@ -152,8 +152,8 @@ Presentation
            anchors.fill: parent
         Rectangle {
             anchors.fill: parent
-            border.width: 1
-            color: "#b89eed"
+            border.width: 0
+            color: "#3f4246"
             Image {
                 id: aster9
                 source: "aster9.png"

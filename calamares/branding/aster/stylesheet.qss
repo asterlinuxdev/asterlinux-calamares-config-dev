@@ -37,7 +37,7 @@ AsterLinux Calamares Theme
 }
 
 #sidebarMenuApp {
-	background-color: #31363b;
+	background-color: #454a4e;
 	padding-top: 0px;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -64,7 +64,7 @@ QPushButton:hover {
 }
 
 #debugButton {
-	background-color: #31363b;
+	background-color: #454a4e;
 	font: 10px;
 	color: #ffffff;
 	height: 32px;
@@ -81,7 +81,7 @@ QPushButton:hover {
 }
 
 #aboutButton {
-	background-color: #31363b;
+	background-color: #454a4e;
 	font: 10px;
 	color: #ffffff;
 	height: 32px;

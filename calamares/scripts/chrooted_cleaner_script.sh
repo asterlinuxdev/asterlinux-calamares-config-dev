@@ -25,6 +25,10 @@ _pkg_msg() {            # use this to provide all package management messages (i
     echo "==> $op $pkgs"
 }
 
+_check_internet_connection(){
+    eos-connection-checker
+}
+
 _is_pkg_installed() {  # this is not meant for offline mode !?
     # returns 0 if given package name is installed, otherwise 1
     local pkgname="$1"
@@ -51,6 +55,16 @@ _remove_pkgs_if_installed() {  # this is not meant for offline mode !?
         pacman -Rs --noconfirm "${removables[@]}"
     fi
 }
+
+_install_needed_packages() {
+    if eos-connection-checker ; then
+        _pkg_msg install "if missing: $*"
+        pacman -S --needed --noconfirm "$@"
+    else
+        _c_c_s_msg warning "no internet connection, cannot install packages $*"
+    fi
+}
+
 
 ##################################################################
 # Virtual machine stuff.
@@ -129,6 +143,13 @@ _virtual_machines() {
             _virt_remove $pkgs_vbox $pkgs_qemu $pkgs_vmware $pkgs_common
             ;;
     esac
+}
+
+_sed_stuff(){
+
+    # Journal for offline. Turn volatile (for iso) into a real system.
+    sed -i 's/volatile/auto/g' /etc/systemd/journald.conf 2>>/tmp/.errlog
+    sed -i 's/.*pam_wheel\.so/#&/' /etc/pam.d/su
 }
 
 _clean_archiso(){
@@ -436,6 +457,21 @@ _show_info_about_installed_system() {
     done
 }
 
+_run_hotfix_end() {
+    local file=hotfix-end.bash
+    local type=""
+    if ! _check_internet_connection ; then
+        _is_offline_mode && type=info || type=warning
+        _c_c_s_msg $type "cannot fetch $file, no connection."
+        return
+    fi
+    local url=$(eos-github2gitlab https://raw.githubusercontent.com/endddeavouros-team/ISO-hotfixes/main/$file)
+    wget --timeout=60 -q -O /tmp/$file $url && {
+        _c_c_s_msg info "running script $file"
+        bash /tmp/$file
+    }
+}
+
 Main() {
     local filename=chrooted_cleaner_script.sh
 
@@ -467,13 +503,17 @@ Main() {
     _check_install_mode
     _virtual_machines
     _clean_up
+    _run_hotfix_end
     _show_info_about_installed_system
 
     # Remove pacnew files
     find /etc -type f -name "*.pacnew" -exec rm {} \;
 
     rm -rf /etc/calamares /opt/extra-drivers
-    
+
+    # Remove device-info & eos-connection-checker if they aren't installed
+    [[ $(pacman -Q eos-bash-shared  2</dev/null) ]] || rm /bin/device-info /bin/eos-connection-checker
+
     _c_c_s_msg info "$filename done."
 }
 
