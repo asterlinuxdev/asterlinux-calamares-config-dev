@@ -4,29 +4,27 @@ welcomeStyleCalamares: false
 
 welcomeExpandingLogo: true
 
-# windowExpanding: normal
-windowExpanding: noexpand
+windowExpanding: normal
 
 windowSize: 1200px,715px
 
 windowPlacement: center
 
-sidebar: widget
+sidebar: qml,left
 
 navigation: widget
 
 strings:
     productName:         AsterLinux
     shortProductName:    AsterLinux
-    version:             ${release_name} ${version}
-    shortVersion:        ${version}
-    versionedName:       AsterLinux ${release_name}
-    shortVersionedName:  ${release_name}
+    version:             FX1
+    shortVersion:        FX1
+    versionedName:       AsterLinux
     bootloaderEntryName: AsterLinux
 
 images:
     productLogo:         "asterlinux-icon.png"
-    productIcon:         "asterlinux-icon.png"
+    #productIcon:         "asterlinux-icon.png"
     productWelcome:      "aster-welcome.png"
     #productBanner:       "release-name-logo.png"
     #productWallpaper:    "wallpaper.png"
@@ -34,10 +32,12 @@ images:
 slideshowAPI: 2
 
 style:
-   sidebarBackground:    "#454a4e"
-   sidebarText:          "#FFFFFF"
-   sidebarTextCurrent:   "#17A879"
-   SidebarBackgroundCurrent: "#454a4e"
+   SidebarBackground:    "#454a4e"
+   SidebarText:          "#FFFFFF"
+   SidebarTextSelect:    "#454a4e"
+   SidebarTextHighlight: "#FFFFFF"
+   SidebarTextCurrent:       "#292F34"
+   SidebarBackgroundCurrent: "#17A879"
 
 slideshow:               "show.qml"
 

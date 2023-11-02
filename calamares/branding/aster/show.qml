@@ -29,135 +29,153 @@ Presentation
     }
 
     Slide {
-           anchors.fill: parent
-        Rectangle {
+
             anchors.fill: parent
-            border.width: 0
-            color: "#3f4246"
+            anchors.verticalCenterOffset: 0
+
             Image {
                 id: aster1
                 source: "aster1.png"
-                fillMode: Image.PreserveAspectFit
+                width: parent.width; height: parent.height
+                horizontalAlignment: Image.AlignCenter
+                verticalAlignment: Image.AlignTop
+                fillMode: Image.Stretch
                 anchors.fill: parent
             }
         }
     }
 
     Slide {
-           anchors.fill: parent
-        Rectangle {
+
             anchors.fill: parent
-            border.width: 0
-            color: "#3f4246"
+            anchors.verticalCenterOffset: 0
+
             Image {
                 id: aster2
                 source: "aster2.png"
-                fillMode: Image.PreserveAspectFit
+                width: parent.width; height: parent.height
+                horizontalAlignment: Image.AlignCenter
+                verticalAlignment: Image.AlignTop
+                fillMode: Image.Stretch
                 anchors.fill: parent
             }
         }
     }
 
     Slide {
+
             anchors.fill: parent
-        Rectangle {
-            anchors.fill: parent
-            border.width: 0
-            color: "#3f4246"
+            anchors.verticalCenterOffset: 0
+
             Image {
                 id: aster3
                 source: "aster3.png"
-                fillMode: Image.PreserveAspectFit
+                width: parent.width; height: parent.height
+                horizontalAlignment: Image.AlignCenter
+                verticalAlignment: Image.AlignTop
+                fillMode: Image.Stretch
                 anchors.fill: parent
             }
         }
     }
 
     Slide {
-           anchors.fill: parent
-        Rectangle {
+
             anchors.fill: parent
-            border.width: 0
-            color: "#3f4246"
+            anchors.verticalCenterOffset: 0
+
             Image {
                 id: aster4
                 source: "aster4.png"
-                fillMode: Image.PreserveAspectFit
+                width: parent.width; height: parent.height
+                horizontalAlignment: Image.AlignCenter
+                verticalAlignment: Image.AlignTop
+                fillMode: Image.Stretch
                 anchors.fill: parent
             }
         }
     }
     
     Slide {
-           anchors.fill: parent
-        Rectangle {
+
             anchors.fill: parent
-            border.width: 0
-            color: "#3f4246"
+            anchors.verticalCenterOffset: 0
+
             Image {
                 id: aster5
                 source: "aster5.png"
-                fillMode: Image.PreserveAspectFit
+                width: parent.width; height: parent.height
+                horizontalAlignment: Image.AlignCenter
+                verticalAlignment: Image.AlignTop
+                fillMode: Image.Stretch
                 anchors.fill: parent
             }
         }
     }
 
         Slide {
-           anchors.fill: parent
-        Rectangle {
+
             anchors.fill: parent
-            border.width: 0
-            color: "#3f4246"
+            anchors.verticalCenterOffset: 0
+
             Image {
                 id: aster6
                 source: "aster6.png"
-                fillMode: Image.PreserveAspectFit
+                width: parent.width; height: parent.height
+                horizontalAlignment: Image.AlignCenter
+                verticalAlignment: Image.AlignTop
+                fillMode: Image.Stretch
                 anchors.fill: parent
             }
         }
     }
 
         Slide {
-           anchors.fill: parent
-        Rectangle {
+
             anchors.fill: parent
-            border.width: 0
-            color: "#3f4246"
+            anchors.verticalCenterOffset: 0
+
             Image {
                 id: aster7
                 source: "aster7.png"
-                fillMode: Image.PreserveAspectFit
+                width: parent.width; height: parent.height
+                horizontalAlignment: Image.AlignCenter
+                verticalAlignment: Image.AlignTop
+                fillMode: Image.Stretch
                 anchors.fill: parent
             }
         }
     }
 
         Slide {
-           anchors.fill: parent
-        Rectangle {
+
             anchors.fill: parent
-            border.width: 0
-            color: "#3f4246"
+            anchors.verticalCenterOffset: 0
+
             Image {
                 id: aster8
                 source: "aster8.png"
-                fillMode: Image.PreserveAspectFit
+                width: parent.width; height: parent.height
+                horizontalAlignment: Image.AlignCenter
+                verticalAlignment: Image.AlignTop
+                fillMode: Image.Stretch
                 anchors.fill: parent
             }
         }
     }
 
         Slide {
-           anchors.fill: parent
-        Rectangle {
+
             anchors.fill: parent
-            border.width: 0
-            color: "#3f4246"
+            anchors.verticalCenterOffset: 0
+
             Image {
                 id: aster9
                 source: "aster9.png"
-                fillMode: Image.PreserveAspectFit
+                width: parent.width; height: parent.height
+                horizontalAlignment: Image.AlignCenter
+                verticalAlignment: Image.AlignTop
+                fillMode: Image.Stretch
                 anchors.fill: parent
             }
         }
