@@ -16,25 +16,25 @@ Presentation
     id: presentation
 
     function nextSlide() {
-        console.log("Process is running in the background...");
+        console.log("QML Component (default slideshow) Next slide");
         presentation.goToNextSlide();
     }
 
     Timer {
         id: advanceTimer
-        interval: 20000
-        running: true
+        interval: 15000
+        running: presentation.activatedInCalamares
         repeat: true
         onTriggered: nextSlide()
     }
 
     Slide {
 
-            anchors.fill: parent
-            anchors.verticalCenterOffset: 0
+    anchors.fill: parent
+    anchors.verticalCenterOffset: 0
 
             Image {
-                id: aster1
+                id: background1
                 source: "aster1.png"
                 width: parent.width; height: parent.height
                 horizontalAlignment: Image.AlignCenter
@@ -51,7 +51,7 @@ Presentation
             anchors.verticalCenterOffset: 0
 
             Image {
-                id: aster2
+                id: background2
                 source: "aster2.png"
                 width: parent.width; height: parent.height
                 horizontalAlignment: Image.AlignCenter
@@ -68,7 +68,7 @@ Presentation
             anchors.verticalCenterOffset: 0
 
             Image {
-                id: aster3
+                id: background3
                 source: "aster3.png"
                 width: parent.width; height: parent.height
                 horizontalAlignment: Image.AlignCenter
@@ -85,7 +85,7 @@ Presentation
             anchors.verticalCenterOffset: 0
 
             Image {
-                id: aster4
+                id: background4
                 source: "aster4.png"
                 width: parent.width; height: parent.height
                 horizontalAlignment: Image.AlignCenter
@@ -102,7 +102,7 @@ Presentation
             anchors.verticalCenterOffset: 0
 
             Image {
-                id: aster5
+                id: background5
                 source: "aster5.png"
                 width: parent.width; height: parent.height
                 horizontalAlignment: Image.AlignCenter
@@ -119,7 +119,7 @@ Presentation
             anchors.verticalCenterOffset: 0
 
             Image {
-                id: aster6
+                id: background6
                 source: "aster6.png"
                 width: parent.width; height: parent.height
                 horizontalAlignment: Image.AlignCenter
@@ -136,7 +136,7 @@ Presentation
             anchors.verticalCenterOffset: 0
 
             Image {
-                id: aster7
+                id: background7
                 source: "aster7.png"
                 width: parent.width; height: parent.height
                 horizontalAlignment: Image.AlignCenter
@@ -153,7 +153,7 @@ Presentation
             anchors.verticalCenterOffset: 0
 
             Image {
-                id: aster8
+                id: background8
                 source: "aster8.png"
                 width: parent.width; height: parent.height
                 horizontalAlignment: Image.AlignCenter
@@ -170,7 +170,7 @@ Presentation
             anchors.verticalCenterOffset: 0
 
             Image {
-                id: aster9
+                id: background9
                 source: "aster9.png"
                 width: parent.width; height: parent.height
                 horizontalAlignment: Image.AlignCenter
@@ -189,4 +189,5 @@ Presentation
     function onLeave() {
         console.log("QML Component (default slideshow) deactivated");
     }
+
 }

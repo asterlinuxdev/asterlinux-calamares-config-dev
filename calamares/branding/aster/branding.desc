@@ -1,3 +1,5 @@
+### WINDOW CONFIGURATION
+
 componentName: aster
 
 welcomeStyleCalamares: false
@@ -10,7 +12,7 @@ windowSize: 1200px,715px
 
 windowPlacement: center
 
-sidebar: qml,left
+sidebar: widget
 
 navigation: widget
 
@@ -29,21 +31,16 @@ images:
     #productBanner:       "release-name-logo.png"
     #productWallpaper:    "wallpaper.png"
 
-slideshowAPI: 2
-
 style:
-   SidebarBackground:    "#454a4e"
+   SidebarBackground:    "#17182B"
    SidebarText:          "#FFFFFF"
-   SidebarTextSelect:    "#454a4e"
-   SidebarTextHighlight: "#FFFFFF"
-   SidebarTextCurrent:       "#292F34"
-   SidebarBackgroundCurrent: "#17A879"
+   SidebarTextSelect:    "#17182B"
+   SidebarTextHighlight: "#2EB398"
 
 slideshow:               "show.qml"
 
-# log feature
+slideshowAPI: 2
 
 uploadServer :
     type :    "fiche"
     url :     "http://termbin.com:9999"
-    sizeLimit : -1
