@@ -370,9 +370,7 @@ Main() {
     fi
 
     _check_install_mode
-    _virtual_machines
     _clean_up
-    _run_hotfix_end
     _show_info_about_installed_system
 
     # Remove pacnew files
