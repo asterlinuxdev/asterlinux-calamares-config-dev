@@ -65,6 +65,86 @@ _install_needed_packages() {
     fi
 }
 
+
+##################################################################
+# Virtual machine stuff.
+# For virtual machines we assume internet connection exists.
+##################################################################
+
+_virt_remove() {
+    local pkg
+    for pkg in "$@" ; do
+        _pkg_msg remove "$pkg"
+        pacman -Rns --noconfirm "$pkg"
+    done
+}
+
+_vm_environment_set1() {
+    local varname="$1"
+    if [ -z "$(grep "^$varname=" /etc/environment)" ] ; then
+        _c_c_s_msg info "adding $varname=1 to /etc/environment"
+        echo "$varname=1" >> /etc/environment
+    fi
+}
+
+_sway_in_vm_settings() {
+    # Settings for sway in a virtual machine
+    if [ -x /usr/bin/swaybg ] ; then
+        # We are using sway here (see also: eos-script-lib-yad, eos_IsSway()).
+        _vm_environment_set1 WLR_NO_HARDWARE_CURSORS
+        case "$detected_vm" in
+            qemu) _vm_environment_set1 WLR_RENDERER_ALLOW_SOFTWARE ;;
+        esac
+    fi
+}
+
+_virtual_machines() {
+    local detected_vm="$1"
+    local pkgs_common="xf86-video-vmware"
+    local pkgs_remove_from_vm="power-profiles-daemon"
+    local pkgs_vbox="virtualbox-guest-utils"
+    local pkgs_qemu="qemu-guest-agent spice-vdagent"
+    local pkgs_vmware="open-vm-tools xf86-input-vmmouse"
+
+    [ -n "$detected_vm" ] || detected_vm="$(device-info --vm)"
+
+    case "$detected_vm" in               # 2021-Sep-30: device-info may output one of: "virtualbox", "qemu", "kvm", "vmware" or ""
+        virtualbox)
+            _c_c_s_msg info "VirtualBox VM detected."
+            _virt_remove $pkgs_qemu $pkgs_vmware $pkgs_remove_from_vm
+            _install_needed_packages $pkgs_vbox $pkgs_common
+            _sway_in_vm_settings           # Note: sway requires enabling 3D support for the vbox virtual machine!
+            ;;
+        vmware)
+            _c_c_s_msg info "VmWare VM detected."
+            _virt_remove $pkgs_qemu $pkgs_vbox $pkgs_remove_from_vm
+            _install_needed_packages $pkgs_vmware $pkgs_common
+            _sway_in_vm_settings
+            ;;
+        qemu)
+            # common pkgs ??
+            _c_c_s_msg info "Qemu VM detected."
+            _virt_remove $pkgs_vmware $pkgs_vbox $pkgs_common $pkgs_remove_from_vm
+            _install_needed_packages $pkgs_qemu
+            _sway_in_vm_settings
+            ;;
+        kvm)
+            _c_c_s_msg info "Kvm VM detected."
+            if [ -n "$(lspci -vnn | grep -iw "qemu virtual machine")" ] ; then
+                $FUNCNAME qemu
+            else
+                 _virt_remove $pkgs_remove_from_vm
+                _install_needed_packages $pkgs_qemu $pkgs_vbox $pkgs_common   # ???
+                _sway_in_vm_settings
+            fi
+            ;;
+        *)
+            _c_c_s_msg info "VM not detected."
+            _virt_remove $pkgs_vbox $pkgs_qemu $pkgs_vmware $pkgs_common
+            ;;
+    esac
+}
+
 _sed_stuff(){
 
     # Journal for offline. Turn volatile (for iso) into a real system.
@@ -125,7 +205,7 @@ _clean_offline_packages(){
         gpart
         grsync
         hdparm
-		partitionmanager
+        partitionmanager
 
         # ENDEAVOUROS REPO
 
@@ -329,6 +409,42 @@ _misc_cleanups() {
     fi
 }
 
+_clean_up(){
+    local xx
+
+    # install or remove nvidia graphics stuff
+    _manage_nvidia_packages
+
+    # remove AMD and Intel graphics drivers if they are not needed
+    _remove_other_graphics_drivers
+
+    # remove broadcom-wl-dkms if it is not needed
+    _remove_broadcom_wifi_driver
+
+    _install_extra_drivers_to_target
+    _install_more_firmware
+
+    _misc_cleanups
+
+    # on the target, select file server based on country
+    xx=/usr/bin/eos-select-file-server
+    if [ -x $xx ] ; then
+        _c_c_s_msg info "running $xx"
+        local fileserver="$($xx)"
+        if [ "$fileserver" != "gitlab" ] ; then
+            _c_c_s_msg info "file server configured to '$fileserver'"
+        fi
+    else
+        _c_c_s_msg warning "program $xx was not found"
+    fi
+
+    # change log file permissions
+    [ -r /var/log/Calamares.log ]         && chown root:root /var/log/Calamares.log
+
+    # run possible user-given commands
+    _RunUserCommands
+}
+
 _show_info_about_installed_system() {
     local cmd
     local cmds=( "lsblk -f -o+SIZE"
@@ -339,6 +455,21 @@ _show_info_about_installed_system() {
         _c_c_s_msg info "$cmd"
         $cmd
     done
+}
+
+_run_hotfix_end() {
+    local file=hotfix-end.bash
+    local type=""
+    if ! _check_internet_connection ; then
+        _is_offline_mode && type=info || type=warning
+        _c_c_s_msg $type "cannot fetch $file, no connection."
+        return
+    fi
+    local url=$(eos-github2gitlab https://raw.githubusercontent.com/enddddeavouros-team/ISO-hotfixes/main/$file)
+    wget --timeout=60 -q -O /tmp/$file $url && {
+        _c_c_s_msg info "running script $file"
+        bash /tmp/$file
+    }
 }
 
 Main() {
@@ -370,13 +501,18 @@ Main() {
     fi
 
     _check_install_mode
+    _virtual_machines
     _clean_up
+    _run_hotfix_end
     _show_info_about_installed_system
 
     # Remove pacnew files
     find /etc -type f -name "*.pacnew" -exec rm {} \;
 
     rm -rf /etc/calamares /opt/extra-drivers
+
+    # Remove device-info & eos-connection-checker if they aren't installed
+    [[ $(pacman -Q eos-bash-shared  2</dev/null) ]] || rm /bin/device-info /bin/eos-connection-checker
 
     _c_c_s_msg info "$filename done."
 }
